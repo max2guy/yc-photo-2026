@@ -230,6 +230,49 @@
     }
     .lb-btn-sel.selected-state { background: #3D2B1F; border-color: #D4A96A; color: #D4A96A; }
 
+    /* ── 다운로드 안내 모달 ── */
+    .dl-modal-bg {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(0,0,0,0.6);
+      display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .dl-modal-bg.open { display: flex; }
+    .dl-modal {
+      background: #FAF6F1; border-radius: 12px;
+      padding: 28px 24px; max-width: 340px; width: 100%;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+    .dl-modal h3 {
+      font-size: 17px; font-weight: 700; color: #3D2B1F;
+      margin-bottom: 14px; text-align: center;
+    }
+    .dl-modal-step {
+      display: flex; gap: 12px; align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .dl-modal-num {
+      background: #8B5E3C; color: #FAF6F1;
+      font-size: 13px; font-weight: 700;
+      min-width: 26px; height: 26px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .dl-modal-text { font-size: 14px; color: #5C3D1E; line-height: 1.6; }
+    .dl-modal-text strong { color: #8B5E3C; }
+    .dl-modal-divider { border: none; border-top: 1px solid #E8D5BF; margin: 16px 0; }
+    .dl-modal-btns { display: flex; gap: 10px; margin-top: 6px; }
+    .btn-modal-cancel {
+      flex: 1; background: #F5EDE0; border: 1px solid #C9A87C;
+      color: #7A5C3C; font-size: 14px; font-weight: 600;
+      padding: 12px; border-radius: 4px; cursor: pointer;
+    }
+    .btn-modal-ok {
+      flex: 2; background: #8B5E3C; border: none;
+      color: #FAF6F1; font-size: 15px; font-weight: 700;
+      padding: 12px; border-radius: 4px; cursor: pointer;
+    }
+    .btn-modal-ok:active { opacity: 0.85; }
+
     /* ── 푸터 ── */
     .site-footer {
       text-align: center; padding: 20px; font-size: 11px;
@@ -274,6 +317,30 @@
   </div>
   <div class="photo-grid" id="photo-grid"></div>
   <footer class="site-footer">연천장로교회 · 2026 가정의 달</footer>
+
+  <!-- 다운로드 안내 모달 -->
+  <div class="dl-modal-bg" id="dl-modal-bg">
+    <div class="dl-modal">
+      <h3>📥 여러 사진 저장 방법</h3>
+      <div class="dl-modal-step">
+        <div class="dl-modal-num">1</div>
+        <div class="dl-modal-text">아래 <strong>"다운로드 시작"</strong> 버튼을 누르세요</div>
+      </div>
+      <div class="dl-modal-step">
+        <div class="dl-modal-num">2</div>
+        <div class="dl-modal-text">화면 상단에 경고창이 뜨면<br><strong>"허용"</strong> 또는 <strong>"Allow"</strong>를 눌러주세요</div>
+      </div>
+      <div class="dl-modal-step">
+        <div class="dl-modal-num">3</div>
+        <div class="dl-modal-text">선택한 사진이 순서대로 자동 저장됩니다</div>
+      </div>
+      <hr class="dl-modal-divider">
+      <div class="dl-modal-btns">
+        <button class="btn-modal-cancel" onclick="closeDlModal()">취소</button>
+        <button class="btn-modal-ok" onclick="startDownload()">다운로드 시작 ⬇</button>
+      </div>
+    </div>
+  </div>
 
   <!-- 선택 다운로드 플로팅 바 -->
   <div class="float-bar" id="float-bar">
@@ -445,6 +512,20 @@
     }
 
     function downloadSelected() {
+      // 1장이면 바로 다운로드, 2장 이상이면 안내 모달 먼저
+      if (selected.size === 1) {
+        startDownload();
+      } else {
+        document.getElementById('dl-modal-bg').classList.add('open');
+      }
+    }
+
+    function closeDlModal() {
+      document.getElementById('dl-modal-bg').classList.remove('open');
+    }
+
+    function startDownload() {
+      closeDlModal();
       const ids = [...selected];
       ids.forEach((id, i) => {
         setTimeout(() => {
