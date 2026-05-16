@@ -183,14 +183,16 @@
     /* 이전/다음 */
     .lb-arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(255,255,255,0.15); border: none;
-      color: white; font-size: 28px; width: 48px; height: 48px;
+      background: rgba(255,255,255,0.85); border: none;
+      color: #3D2B1F; font-size: 32px; font-weight: 700;
+      width: 56px; height: 56px;
       border-radius: 50%; cursor: pointer; display: flex;
       align-items: center; justify-content: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
     }
-    .lb-arrow:active { background: rgba(255,255,255,0.3); }
-    .lb-arrow.prev { left: 8px; }
-    .lb-arrow.next { right: 8px; }
+    .lb-arrow:active { background: #FAF6F1; transform: translateY(-50%) scale(0.93); }
+    .lb-arrow.prev { left: 12px; }
+    .lb-arrow.next { right: 12px; }
 
     /* 상단 바 */
     .lb-top {
