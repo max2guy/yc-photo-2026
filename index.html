@@ -36,14 +36,9 @@
       letter-spacing: 1px;
       margin-bottom: 6px;
     }
-    .header-sub {
-      font-size: 14px;
-      color: #7A5C3C;
-      letter-spacing: 1px;
-    }
+    .header-sub { font-size: 14px; color: #7A5C3C; letter-spacing: 1px; }
     .divider {
-      width: 50px;
-      height: 2px;
+      width: 50px; height: 2px;
       background: linear-gradient(90deg, transparent, #B07D4A, transparent);
       margin: 14px auto;
     }
@@ -55,92 +50,46 @@
       margin: 0 auto;
     }
     .category-label {
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: #B07D4A;
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 14px;
+      font-size: 11px; letter-spacing: 4px; color: #B07D4A;
+      text-transform: uppercase; text-align: center; margin-bottom: 14px;
     }
-    .category-tabs {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-    }
+    .category-tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
     .tab-btn {
-      background: #FFF8F0;
-      border: 1.5px solid #D4B896;
-      color: #7A5C3C;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 14px 8px;
-      border-radius: 8px;
-      cursor: pointer;
-      text-align: center;
-      line-height: 1.4;
-      transition: all 0.15s;
+      background: #FFF8F0; border: 1.5px solid #D4B896;
+      color: #7A5C3C; font-size: 14px; font-weight: 600;
+      padding: 14px 8px; border-radius: 8px; cursor: pointer;
+      text-align: center; line-height: 1.4;
     }
     .tab-btn .tab-icon { font-size: 22px; display: block; margin-bottom: 5px; }
     .tab-btn.active {
-      background: #8B5E3C;
-      border-color: #8B5E3C;
-      color: #FAF6F1;
+      background: #8B5E3C; border-color: #8B5E3C; color: #FAF6F1;
       box-shadow: 0 4px 12px rgba(139,94,60,0.3);
     }
-    .tab-btn:active { opacity: 0.8; }
 
     /* ── 전체 다운로드 버튼 ── */
-    .cta-wrap {
-      padding: 20px 16px 8px;
-      max-width: 520px;
-      margin: 0 auto;
-    }
+    .cta-wrap { padding: 20px 16px 8px; max-width: 520px; margin: 0 auto; }
     .btn-all {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      background: #8B5E3C;
-      color: #FAF6F1;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 15px;
-      border-radius: 4px;
-      border: none;
-      letter-spacing: 1px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; background: #8B5E3C; color: #FAF6F1;
+      font-size: 16px; font-weight: 600; padding: 15px; border-radius: 4px;
+      border: none; letter-spacing: 1px;
       box-shadow: 0 4px 16px rgba(139,94,60,0.3);
-      cursor: pointer;
-      text-decoration: none;
+      cursor: pointer; text-decoration: none;
     }
     .btn-all:active { opacity: 0.85; }
-    .cta-hint {
-      font-size: 12px;
-      color: #9C7A5A;
-      margin-top: 8px;
-      text-align: center;
-      letter-spacing: 0.5px;
-    }
+    .cta-hint { font-size: 12px; color: #9C7A5A; margin-top: 8px; text-align: center; }
 
     /* ── 상태 메시지 ── */
     .status {
-      text-align: center;
-      padding: 24px 20px;
-      font-size: 14px;
-      color: #B07D4A;
-      letter-spacing: 1px;
-      min-height: 56px;
+      text-align: center; padding: 24px 20px;
+      font-size: 14px; color: #B07D4A; letter-spacing: 1px; min-height: 56px;
     }
     .status.error { color: #C0392B; font-size: 15px; }
 
-    /* ── 로딩 점 애니메이션 ── */
     @keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
     .dot {
-      display: inline-block;
-      width: 7px; height: 7px;
-      background: #C9A87C;
-      border-radius: 50%;
-      margin: 0 2px;
+      display: inline-block; width: 7px; height: 7px;
+      background: #C9A87C; border-radius: 50%; margin: 0 2px;
       animation: blink 1.2s ease-in-out infinite;
     }
     .dot:nth-child(2) { animation-delay: 0.2s; }
@@ -148,64 +97,139 @@
 
     /* ── 사진 그리드 ── */
     .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      padding: 16px 16px 40px;
-      max-width: 520px;
-      margin: 0 auto;
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 12px; padding: 16px 16px 100px;
+      max-width: 520px; margin: 0 auto;
     }
     .photo-card {
-      background: #FFF8F0;
-      border: 1px solid #E8D5BF;
-      border-radius: 8px;
-      overflow: hidden;
+      background: #FFF8F0; border: 1px solid #E8D5BF;
+      border-radius: 8px; overflow: hidden;
       box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      position: relative;
     }
+    .photo-card.selected { border: 2.5px solid #8B5E3C; box-shadow: 0 0 0 3px rgba(139,94,60,0.18); }
+
+    /* 체크박스 */
+    .check-overlay {
+      position: absolute; top: 8px; left: 8px; z-index: 2;
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255,255,255,0.9); border: 2px solid #C9A87C;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 15px;
+    }
+    .photo-card.selected .check-overlay {
+      background: #8B5E3C; border-color: #8B5E3C; color: white;
+    }
+
+    /* 썸네일 (클릭 → 라이트박스) */
+    .photo-thumb-wrap { position: relative; cursor: pointer; }
     .photo-thumb {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      display: block;
-      background: #EDD9C0;
+      width: 100%; aspect-ratio: 1; object-fit: cover;
+      display: block; background: #EDD9C0;
     }
-    .photo-info {
-      padding: 10px 12px 12px;
-    }
+    .photo-info { padding: 10px 12px 12px; }
     .photo-name {
-      font-size: 12px;
-      color: #5C3D1E;
-      margin-bottom: 8px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 12px; color: #5C3D1E; margin-bottom: 8px;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
     }
     .btn-dl {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      width: 100%;
-      background: #F5EDE0;
-      border: 1px solid #C9A87C;
-      color: #7A5C3C;
-      font-size: 14px;
-      font-weight: 600;
-      padding: 10px 0;
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
+      display: flex; align-items: center; justify-content: center; gap: 6px;
+      width: 100%; background: #F5EDE0; border: 1px solid #C9A87C;
+      color: #7A5C3C; font-size: 14px; font-weight: 600;
+      padding: 10px 0; border-radius: 4px; cursor: pointer; text-decoration: none;
     }
     .btn-dl:active { background: #EDD9C0; }
 
+    /* ── 선택 다운로드 플로팅 버튼 ── */
+    .float-bar {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #3D2B1F; padding: 14px 20px 24px;
+      display: none; align-items: center; justify-content: space-between;
+      z-index: 100; box-shadow: 0 -4px 20px rgba(0,0,0,0.25);
+    }
+    .float-bar.visible { display: flex; }
+    .float-count { color: #D4A96A; font-size: 14px; font-weight: 600; }
+    .float-btns { display: flex; gap: 10px; }
+    .btn-cancel-sel {
+      background: transparent; border: 1px solid #7A5C3C;
+      color: #C9A87C; font-size: 13px; padding: 10px 16px;
+      border-radius: 4px; cursor: pointer;
+    }
+    .btn-dl-sel {
+      background: #D4A96A; border: none; color: #3D2B1F;
+      font-size: 14px; font-weight: 700; padding: 10px 20px;
+      border-radius: 4px; cursor: pointer;
+    }
+    .btn-dl-sel:active { opacity: 0.85; }
+
+    /* ── 라이트박스 ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,0.92);
+      display: none; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+
+    .lb-img-wrap {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      width: 100%; padding: 60px 16px 16px; position: relative;
+    }
+    .lb-img {
+      max-width: 100%; max-height: 100%;
+      object-fit: contain; border-radius: 4px;
+    }
+    /* 이전/다음 */
+    .lb-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.15); border: none;
+      color: white; font-size: 28px; width: 48px; height: 48px;
+      border-radius: 50%; cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .lb-arrow:active { background: rgba(255,255,255,0.3); }
+    .lb-arrow.prev { left: 8px; }
+    .lb-arrow.next { right: 8px; }
+
+    /* 상단 바 */
+    .lb-top {
+      position: absolute; top: 0; left: 0; right: 0;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 16px; background: rgba(0,0,0,0.4);
+    }
+    .lb-name { color: #E8D5BF; font-size: 13px; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .lb-counter { color: #B07D4A; font-size: 12px; margin: 0 12px; white-space: nowrap; }
+    .lb-close {
+      background: rgba(255,255,255,0.15); border: none;
+      color: white; font-size: 20px; width: 38px; height: 38px;
+      border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* 하단 바 */
+    .lb-bottom {
+      width: 100%; padding: 14px 20px 28px;
+      background: rgba(0,0,0,0.5);
+      display: flex; gap: 12px;
+    }
+    .lb-btn-dl {
+      flex: 1; background: #8B5E3C; color: #FAF6F1;
+      border: none; font-size: 16px; font-weight: 600;
+      padding: 14px; border-radius: 4px; cursor: pointer;
+      text-decoration: none; display: flex;
+      align-items: center; justify-content: center; gap: 8px;
+    }
+    .lb-btn-dl:active { opacity: 0.85; }
+    .lb-btn-sel {
+      background: #F5EDE0; border: 1.5px solid #C9A87C;
+      color: #7A5C3C; font-size: 15px; font-weight: 600;
+      padding: 14px 18px; border-radius: 4px; cursor: pointer;
+    }
+    .lb-btn-sel.selected-state { background: #3D2B1F; border-color: #D4A96A; color: #D4A96A; }
+
     /* ── 푸터 ── */
     .site-footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 11px;
-      color: #C9A87C;
-      border-top: 1px solid #E8D5BF;
-      letter-spacing: 2px;
+      text-align: center; padding: 20px; font-size: 11px;
+      color: #C9A87C; border-top: 1px solid #E8D5BF; letter-spacing: 2px;
     }
   </style>
 </head>
@@ -218,7 +242,6 @@
     <div class="header-sub">소중한 순간을 간직하세요</div>
   </header>
 
-  <!-- 카테고리 탭 -->
   <div class="category-wrap">
     <div class="category-label">사진 종류 선택</div>
     <div class="category-tabs">
@@ -234,7 +257,6 @@
     </div>
   </div>
 
-  <!-- 전체 다운로드 버튼 -->
   <div class="cta-wrap">
     <a id="btn-all" class="btn-all" href="#" target="_blank" rel="noopener">
       ⬇ 이 폴더 전체 다운로드
@@ -246,15 +268,41 @@
     <span class="dot"></span><span class="dot"></span><span class="dot"></span>
     &nbsp;사진을 불러오는 중...
   </div>
-
   <div class="photo-grid" id="photo-grid"></div>
-
   <footer class="site-footer">연천장로교회 · 2026 가정의 달</footer>
+
+  <!-- 선택 다운로드 플로팅 바 -->
+  <div class="float-bar" id="float-bar">
+    <div class="float-count" id="float-count">0장 선택됨</div>
+    <div class="float-btns">
+      <button class="btn-cancel-sel" onclick="clearSelection()">선택 취소</button>
+      <button class="btn-dl-sel" onclick="downloadSelected()">⬇ 선택 다운로드</button>
+    </div>
+  </div>
+
+  <!-- 라이트박스 -->
+  <div class="lightbox" id="lightbox">
+    <div class="lb-top">
+      <div class="lb-name" id="lb-name"></div>
+      <div class="lb-counter" id="lb-counter"></div>
+      <button class="lb-close" onclick="closeLightbox()">✕</button>
+    </div>
+    <div class="lb-img-wrap">
+      <button class="lb-arrow prev" onclick="lbMove(-1)">‹</button>
+      <img class="lb-img" id="lb-img" src="" alt="">
+      <button class="lb-arrow next" onclick="lbMove(1)">›</button>
+    </div>
+    <div class="lb-bottom">
+      <a class="lb-btn-dl" id="lb-btn-dl" href="#" target="_blank" rel="noopener">
+        ⬇ 이 사진 받기
+      </a>
+      <button class="lb-btn-sel" id="lb-btn-sel" onclick="toggleSelectFromLb()">☐ 선택</button>
+    </div>
+  </div>
 
   <script>
     const API_KEY = 'AIzaSyCuKQLEMJLz5Y1UtrGJ7OZEV0q_hSb9hoE';
 
-    // 폴더 ID → 표시 이름 매핑 (Drive에서 확인한 실제 ID)
     const CATEGORIES = [
       { name: '개인',        folderId: '16rjanyops75oEoV6iehmsHBwXEhErZAD' },
       { name: '가족 및 구역', folderId: '11uO7Dx_3-XlBLLxqBisRT80r0cw9rEB5' },
@@ -262,25 +310,24 @@
     ];
 
     let currentCategory = 0;
-    // 카테고리별 캐시 (한번 로딩하면 재사용)
+    let currentFiles = [];
     const cache = {};
+    const selected = new Set(); // 선택된 file.id
 
+    // 라이트박스 상태
+    let lbIndex = 0;
+
+    /* ── 카테고리 전환 ── */
     function selectCategory(index) {
       currentCategory = index;
-
-      // 탭 버튼 활성화
-      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
-      });
-
-      // 전체 다운로드 버튼 링크 업데이트
-      const folderId = CATEGORIES[index].folderId;
+      clearSelection();
+      document.querySelectorAll('.tab-btn').forEach((btn, i) =>
+        btn.classList.toggle('active', i === index));
       document.getElementById('btn-all').href =
-        `https://drive.google.com/drive/folders/${folderId}`;
-
-      // 캐시 있으면 바로 렌더, 없으면 로딩
+        `https://drive.google.com/drive/folders/${CATEGORIES[index].folderId}`;
       if (cache[index]) {
-        renderPhotos(cache[index]);
+        currentFiles = cache[index];
+        renderPhotos(currentFiles);
       } else {
         loadPhotos(index);
       }
@@ -289,25 +336,17 @@
     async function loadPhotos(index) {
       const statusEl = document.getElementById('status');
       const gridEl = document.getElementById('photo-grid');
-
       statusEl.className = 'status';
       statusEl.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp;사진을 불러오는 중...';
       gridEl.innerHTML = '';
-
       try {
         const files = await fetchFiles(CATEGORIES[index].folderId);
         cache[index] = files;
-
-        if (index !== currentCategory) return; // 탭 전환된 경우 무시
-
-        if (files.length === 0) {
-          statusEl.textContent = '사진이 없습니다.';
-          return;
-        }
-
+        if (index !== currentCategory) return;
+        currentFiles = files;
+        if (files.length === 0) { statusEl.textContent = '사진이 없습니다.'; return; }
         statusEl.textContent = '';
         renderPhotos(files);
-
       } catch (err) {
         console.error(err);
         statusEl.innerHTML = '사진을 불러오지 못했습니다.<br>잠시 후 다시 시도해 주세요.';
@@ -316,14 +355,12 @@
     }
 
     async function fetchFiles(folderId) {
-      let files = [];
-      let pageToken = null;
+      let files = [], pageToken = null;
       do {
         const params = new URLSearchParams({
           q: `'${folderId}' in parents and mimeType contains 'image/' and trashed = false`,
           fields: 'nextPageToken, files(id, name)',
-          pageSize: 100,
-          key: API_KEY,
+          pageSize: 100, key: API_KEY,
           ...(pageToken ? { pageToken } : {})
         });
         const res = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
@@ -335,34 +372,142 @@
       return files;
     }
 
+    /* ── 렌더링 ── */
     function renderPhotos(files) {
       const gridEl = document.getElementById('photo-grid');
       gridEl.innerHTML = '';
-      files.forEach(file => {
+      files.forEach((file, i) => {
         const thumbUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w400`;
         const downloadUrl = `https://drive.google.com/uc?export=download&id=${file.id}`;
+        const isSelected = selected.has(file.id);
+
         const card = document.createElement('div');
-        card.className = 'photo-card';
+        card.className = 'photo-card' + (isSelected ? ' selected' : '');
+        card.dataset.id = file.id;
         card.innerHTML = `
-          <img class="photo-thumb"
-               src="${thumbUrl}"
-               alt="${file.name}"
-               loading="lazy"
-               onerror="this.style.background='#EDD9C0';this.removeAttribute('src')">
+          <div class="check-overlay" onclick="toggleSelect('${file.id}', event)">
+            ${isSelected ? '✓' : ''}
+          </div>
+          <div class="photo-thumb-wrap" onclick="openLightbox(${i})">
+            <img class="photo-thumb"
+                 src="${thumbUrl}" alt="${file.name}" loading="lazy"
+                 onerror="this.style.background='#EDD9C0';this.removeAttribute('src')">
+          </div>
           <div class="photo-info">
             <div class="photo-name">${file.name}</div>
-            <a class="btn-dl"
-               href="${downloadUrl}"
-               download="${file.name}"
-               target="_blank"
-               rel="noopener">
-              ⬇ 받기
-            </a>
+            <a class="btn-dl" href="${downloadUrl}" download="${file.name}"
+               target="_blank" rel="noopener">⬇ 받기</a>
           </div>
         `;
         gridEl.appendChild(card);
       });
     }
+
+    /* ── 선택 기능 ── */
+    function toggleSelect(fileId, e) {
+      if (e) e.stopPropagation();
+      if (selected.has(fileId)) selected.delete(fileId);
+      else selected.add(fileId);
+      updateFloatBar();
+      // 카드 UI 업데이트
+      const card = document.querySelector(`.photo-card[data-id="${fileId}"]`);
+      if (card) {
+        card.classList.toggle('selected', selected.has(fileId));
+        card.querySelector('.check-overlay').textContent = selected.has(fileId) ? '✓' : '';
+      }
+      // 라이트박스 버튼 상태 갱신
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      updateLbSelBtn();
+    }
+
+    function clearSelection() {
+      selected.clear();
+      updateFloatBar();
+      document.querySelectorAll('.photo-card.selected').forEach(c => {
+        c.classList.remove('selected');
+        c.querySelector('.check-overlay').textContent = '';
+      });
+    }
+
+    function updateFloatBar() {
+      const bar = document.getElementById('float-bar');
+      const count = document.getElementById('float-count');
+      if (selected.size > 0) {
+        bar.classList.add('visible');
+        count.textContent = `${selected.size}장 선택됨`;
+      } else {
+        bar.classList.remove('visible');
+      }
+    }
+
+    function downloadSelected() {
+      const ids = [...selected];
+      ids.forEach((id, i) => {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = `https://drive.google.com/uc?export=download&id=${id}`;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.click();
+        }, i * 800);
+      });
+    }
+
+    /* ── 라이트박스 ── */
+    function openLightbox(index) {
+      lbIndex = index;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      updateLightbox();
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function lbMove(dir) {
+      lbIndex = (lbIndex + dir + currentFiles.length) % currentFiles.length;
+      updateLightbox();
+    }
+
+    function updateLightbox() {
+      const file = currentFiles[lbIndex];
+      const largeUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w1600`;
+      const downloadUrl = `https://drive.google.com/uc?export=download&id=${file.id}`;
+      document.getElementById('lb-img').src = largeUrl;
+      document.getElementById('lb-img').alt = file.name;
+      document.getElementById('lb-name').textContent = file.name;
+      document.getElementById('lb-counter').textContent = `${lbIndex + 1} / ${currentFiles.length}`;
+      document.getElementById('lb-btn-dl').href = downloadUrl;
+      document.getElementById('lb-btn-dl').download = file.name;
+      updateLbSelBtn();
+    }
+
+    function updateLbSelBtn() {
+      const file = currentFiles[lbIndex];
+      const btn = document.getElementById('lb-btn-sel');
+      if (selected.has(file.id)) {
+        btn.textContent = '☑ 선택됨';
+        btn.classList.add('selected-state');
+      } else {
+        btn.textContent = '☐ 선택';
+        btn.classList.remove('selected-state');
+      }
+    }
+
+    function toggleSelectFromLb() {
+      const file = currentFiles[lbIndex];
+      toggleSelect(file.id, null);
+    }
+
+    // 키보드: 방향키 & ESC
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'ArrowLeft') lbMove(-1);
+      else if (e.key === 'ArrowRight') lbMove(1);
+      else if (e.key === 'Escape') closeLightbox();
+    });
 
     // 초기 로딩
     selectCategory(0);
