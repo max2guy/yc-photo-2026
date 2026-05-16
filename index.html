@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2025 가정의 달 사진 — 연천장로교회</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      background: #FAF6F1;
+      color: #3D2B1F;
+      min-height: 100vh;
+    }
+
+    /* ── 헤더 ── */
+    .site-header {
+      background: linear-gradient(160deg, #F5EDE0 0%, #EDD9C0 100%);
+      border-bottom: 1px solid #D4B896;
+      padding: 32px 20px 28px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 5px;
+      color: #B07D4A;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .site-header h1 {
+      font-family: 'Georgia', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: #3D2B1F;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .header-sub {
+      font-size: 14px;
+      color: #7A5C3C;
+      letter-spacing: 1px;
+    }
+    .divider {
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #B07D4A, transparent);
+      margin: 14px auto;
+    }
+
+    /* ── 전체 다운로드 버튼 ── */
+    .cta-wrap {
+      padding: 28px 20px 16px;
+      text-align: center;
+    }
+    .btn-all {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #8B5E3C;
+      color: #FAF6F1;
+      font-size: 17px;
+      font-weight: 600;
+      padding: 16px 36px;
+      border-radius: 4px;
+      border: none;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 16px rgba(139,94,60,0.3);
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-all:active { opacity: 0.85; }
+    .cta-hint {
+      font-size: 13px;
+      color: #9C7A5A;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── 상태 메시지 ── */
+    .status {
+      text-align: center;
+      padding: 16px 20px;
+      font-size: 14px;
+      color: #B07D4A;
+      letter-spacing: 1px;
+      min-height: 56px;
+    }
+    .status.error { color: #C0392B; font-size: 15px; }
+
+    /* ── 로딩 점 애니메이션 ── */
+    @keyframes blink { 0%,80%,100%{opacity:0.2} 40%{opacity:1} }
+    .dot {
+      display: inline-block;
+      width: 7px; height: 7px;
+      background: #C9A87C;
+      border-radius: 50%;
+      margin: 0 2px;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+    .dot:nth-child(2) { animation-delay: 0.2s; }
+    .dot:nth-child(3) { animation-delay: 0.4s; }
+
+    /* ── 섹션 레이블 ── */
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #B07D4A;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 8px 20px 16px;
+    }
+
+    /* ── 사진 그리드 ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 0 16px 40px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .photo-card {
+      background: #FFF8F0;
+      border: 1px solid #E8D5BF;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .photo-thumb {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+      background: #EDD9C0;
+    }
+    .photo-info {
+      padding: 10px 12px 12px;
+    }
+    .photo-name {
+      font-size: 12px;
+      color: #5C3D1E;
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .btn-dl {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      width: 100%;
+      background: #F5EDE0;
+      border: 1px solid #C9A87C;
+      color: #7A5C3C;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 0;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-dl:active { background: #EDD9C0; }
+
+    /* ── 푸터 ── */
+    .site-footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 11px;
+      color: #C9A87C;
+      border-top: 1px solid #E8D5BF;
+      letter-spacing: 2px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="eyebrow">2025 · May</div>
+    <h1>가정의 달 사진</h1>
+    <div class="divider"></div>
+    <div class="header-sub">소중한 순간을 간직하세요</div>
+  </header>
+
+  <div class="cta-wrap">
+    <a id="btn-all" class="btn-all" href="#" target="_blank" rel="noopener">
+      ⬇ 전체 사진 다운로드
+    </a>
+    <div class="cta-hint">버튼을 누르면 모든 사진이 저장됩니다</div>
+  </div>
+
+  <div id="status" class="status">
+    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    &nbsp;사진을 불러오는 중...
+  </div>
+
+  <div class="section-label" id="grid-label" style="display:none">개별 사진 선택</div>
+  <div class="photo-grid" id="photo-grid"></div>
+
+  <footer class="site-footer">연천장로교회 · 2025 가정의 달</footer>
+
+  <script>
+    const FOLDER_ID = '1FPFWclBSGZVzzcfurSwe-VaGmm-GHaPp';
+    const API_KEY = 'YOUR_API_KEY_HERE'; // ← 발급받은 API 키로 교체하세요
+
+    async function loadPhotos() {
+      const statusEl = document.getElementById('status');
+      const gridEl = document.getElementById('photo-grid');
+      const gridLabel = document.getElementById('grid-label');
+
+      try {
+        let files = [];
+        let pageToken = null;
+
+        do {
+          const params = new URLSearchParams({
+            q: `'${FOLDER_ID}' in parents and mimeType contains 'image/' and trashed = false`,
+            fields: 'nextPageToken, files(id, name)',
+            pageSize: 100,
+            key: API_KEY,
+            ...(pageToken ? { pageToken } : {})
+          });
+          const res = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
+          if (!res.ok) throw new Error(`API 오류: ${res.status}`);
+          const data = await res.json();
+          files = files.concat(data.files || []);
+          pageToken = data.nextPageToken;
+        } while (pageToken);
+
+        if (files.length === 0) {
+          statusEl.textContent = '사진이 없습니다.';
+          return;
+        }
+
+        statusEl.textContent = '';
+        gridLabel.style.display = 'block';
+        renderPhotos(files, gridEl);
+
+      } catch (err) {
+        console.error(err);
+        statusEl.innerHTML = '사진을 불러오지 못했습니다.<br>잠시 후 다시 시도해 주세요.';
+        statusEl.classList.add('error');
+      }
+    }
+
+    function renderPhotos(files, gridEl) {
+      gridEl.innerHTML = '';
+      files.forEach(file => {
+        const thumbUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w400`;
+        const downloadUrl = `https://drive.google.com/uc?export=download&id=${file.id}`;
+
+        const card = document.createElement('div');
+        card.className = 'photo-card';
+        card.innerHTML = `
+          <img class="photo-thumb"
+               src="${thumbUrl}"
+               alt="${file.name}"
+               loading="lazy"
+               onerror="this.style.background='#EDD9C0';this.removeAttribute('src')">
+          <div class="photo-info">
+            <div class="photo-name">${file.name}</div>
+            <a class="btn-dl"
+               href="${downloadUrl}"
+               download="${file.name}"
+               target="_blank"
+               rel="noopener">
+              ⬇ 받기
+            </a>
+          </div>
+        `;
+        gridEl.appendChild(card);
+      });
+    }
+
+    document.getElementById('btn-all').href =
+      `https://drive.google.com/drive/folders/${FOLDER_ID}`;
+
+    loadPhotos();
+  </script>
+
+</body>
+</html>
