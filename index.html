@@ -204,29 +204,44 @@
     const FOLDER_ID = '1FPFWclBSGZVzzcfurSwe-VaGmm-GHaPp';
     const API_KEY = 'AIzaSyCuKQLEMJLz5Y1UtrGJ7OZEV0q_hSb9hoE';
 
+    async function fetchAllFiles(folderId) {
+      let files = [];
+      let pageToken = null;
+
+      // 현재 폴더의 모든 항목 가져오기
+      do {
+        const params = new URLSearchParams({
+          q: `'${folderId}' in parents and trashed = false`,
+          fields: 'nextPageToken, files(id, name, mimeType)',
+          pageSize: 100,
+          key: API_KEY,
+          ...(pageToken ? { pageToken } : {})
+        });
+        const res = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
+        if (!res.ok) throw new Error(`API 오류: ${res.status}`);
+        const data = await res.json();
+        for (const item of data.files || []) {
+          if (item.mimeType === 'application/vnd.google-apps.folder') {
+            // 하위 폴더면 재귀 탐색
+            const subFiles = await fetchAllFiles(item.id);
+            files = files.concat(subFiles);
+          } else if (item.mimeType.startsWith('image/')) {
+            files.push(item);
+          }
+        }
+        pageToken = data.nextPageToken;
+      } while (pageToken);
+
+      return files;
+    }
+
     async function loadPhotos() {
       const statusEl = document.getElementById('status');
       const gridEl = document.getElementById('photo-grid');
       const gridLabel = document.getElementById('grid-label');
 
       try {
-        let files = [];
-        let pageToken = null;
-
-        do {
-          const params = new URLSearchParams({
-            q: `'${FOLDER_ID}' in parents and mimeType contains 'image/' and trashed = false`,
-            fields: 'nextPageToken, files(id, name)',
-            pageSize: 100,
-            key: API_KEY,
-            ...(pageToken ? { pageToken } : {})
-          });
-          const res = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
-          if (!res.ok) throw new Error(`API 오류: ${res.status}`);
-          const data = await res.json();
-          files = files.concat(data.files || []);
-          pageToken = data.nextPageToken;
-        } while (pageToken);
+        const files = await fetchAllFiles(FOLDER_ID);
 
         if (files.length === 0) {
           statusEl.textContent = '사진이 없습니다.';
