@@ -48,20 +48,64 @@
       margin: 14px auto;
     }
 
+    /* ── 카테고리 탭 ── */
+    .category-wrap {
+      padding: 24px 16px 0;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .category-label {
+      font-size: 11px;
+      letter-spacing: 4px;
+      color: #B07D4A;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .category-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .tab-btn {
+      background: #FFF8F0;
+      border: 1.5px solid #D4B896;
+      color: #7A5C3C;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 14px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-align: center;
+      line-height: 1.4;
+      transition: all 0.15s;
+    }
+    .tab-btn .tab-icon { font-size: 22px; display: block; margin-bottom: 5px; }
+    .tab-btn.active {
+      background: #8B5E3C;
+      border-color: #8B5E3C;
+      color: #FAF6F1;
+      box-shadow: 0 4px 12px rgba(139,94,60,0.3);
+    }
+    .tab-btn:active { opacity: 0.8; }
+
     /* ── 전체 다운로드 버튼 ── */
     .cta-wrap {
-      padding: 28px 20px 16px;
-      text-align: center;
+      padding: 20px 16px 8px;
+      max-width: 520px;
+      margin: 0 auto;
     }
     .btn-all {
-      display: inline-flex;
+      display: flex;
       align-items: center;
+      justify-content: center;
       gap: 10px;
+      width: 100%;
       background: #8B5E3C;
       color: #FAF6F1;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 600;
-      padding: 16px 36px;
+      padding: 15px;
       border-radius: 4px;
       border: none;
       letter-spacing: 1px;
@@ -71,16 +115,17 @@
     }
     .btn-all:active { opacity: 0.85; }
     .cta-hint {
-      font-size: 13px;
+      font-size: 12px;
       color: #9C7A5A;
-      margin-top: 10px;
+      margin-top: 8px;
+      text-align: center;
       letter-spacing: 0.5px;
     }
 
     /* ── 상태 메시지 ── */
     .status {
       text-align: center;
-      padding: 16px 20px;
+      padding: 24px 20px;
       font-size: 14px;
       color: #B07D4A;
       letter-spacing: 1px;
@@ -101,22 +146,12 @@
     .dot:nth-child(2) { animation-delay: 0.2s; }
     .dot:nth-child(3) { animation-delay: 0.4s; }
 
-    /* ── 섹션 레이블 ── */
-    .section-label {
-      font-size: 11px;
-      letter-spacing: 4px;
-      color: #B07D4A;
-      text-transform: uppercase;
-      text-align: center;
-      padding: 8px 20px 16px;
-    }
-
     /* ── 사진 그리드 ── */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 12px;
-      padding: 0 16px 40px;
+      padding: 16px 16px 40px;
       max-width: 520px;
       margin: 0 auto;
     }
@@ -183,11 +218,28 @@
     <div class="header-sub">소중한 순간을 간직하세요</div>
   </header>
 
+  <!-- 카테고리 탭 -->
+  <div class="category-wrap">
+    <div class="category-label">사진 종류 선택</div>
+    <div class="category-tabs">
+      <button class="tab-btn active" onclick="selectCategory(0)">
+        <span class="tab-icon">🙍</span>개인
+      </button>
+      <button class="tab-btn" onclick="selectCategory(1)">
+        <span class="tab-icon">👨‍👩‍👧</span>가족 및 구역
+      </button>
+      <button class="tab-btn" onclick="selectCategory(2)">
+        <span class="tab-icon">📁</span>기타
+      </button>
+    </div>
+  </div>
+
+  <!-- 전체 다운로드 버튼 -->
   <div class="cta-wrap">
     <a id="btn-all" class="btn-all" href="#" target="_blank" rel="noopener">
-      ⬇ 전체 사진 다운로드
+      ⬇ 이 폴더 전체 다운로드
     </a>
-    <div class="cta-hint">버튼을 누르면 모든 사진이 저장됩니다</div>
+    <div class="cta-hint">버튼을 누르면 선택한 종류의 사진이 저장됩니다</div>
   </div>
 
   <div id="status" class="status">
@@ -195,53 +247,58 @@
     &nbsp;사진을 불러오는 중...
   </div>
 
-  <div class="section-label" id="grid-label" style="display:none">개별 사진 선택</div>
   <div class="photo-grid" id="photo-grid"></div>
 
   <footer class="site-footer">연천장로교회 · 2026 가정의 달</footer>
 
   <script>
-    const FOLDER_ID = '1FPFWclBSGZVzzcfurSwe-VaGmm-GHaPp';
     const API_KEY = 'AIzaSyCuKQLEMJLz5Y1UtrGJ7OZEV0q_hSb9hoE';
 
-    async function fetchAllFiles(folderId) {
-      let files = [];
-      let pageToken = null;
+    // 폴더 ID → 표시 이름 매핑 (Drive에서 확인한 실제 ID)
+    const CATEGORIES = [
+      { name: '개인',        folderId: '16rjanyops75oEoV6iehmsHBwXEhErZAD' },
+      { name: '가족 및 구역', folderId: '11uO7Dx_3-XlBLLxqBisRT80r0cw9rEB5' },
+      { name: '기타',        folderId: '1BzkZXf7t01zf_Z0F11FltQbfBXh49IXG'  },
+    ];
 
-      // 현재 폴더의 모든 항목 가져오기
-      do {
-        const params = new URLSearchParams({
-          q: `'${folderId}' in parents and trashed = false`,
-          fields: 'nextPageToken, files(id, name, mimeType)',
-          pageSize: 100,
-          key: API_KEY,
-          ...(pageToken ? { pageToken } : {})
-        });
-        const res = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
-        if (!res.ok) throw new Error(`API 오류: ${res.status}`);
-        const data = await res.json();
-        for (const item of data.files || []) {
-          if (item.mimeType === 'application/vnd.google-apps.folder') {
-            // 하위 폴더면 재귀 탐색
-            const subFiles = await fetchAllFiles(item.id);
-            files = files.concat(subFiles);
-          } else if (item.mimeType.startsWith('image/')) {
-            files.push(item);
-          }
-        }
-        pageToken = data.nextPageToken;
-      } while (pageToken);
+    let currentCategory = 0;
+    // 카테고리별 캐시 (한번 로딩하면 재사용)
+    const cache = {};
 
-      return files;
+    function selectCategory(index) {
+      currentCategory = index;
+
+      // 탭 버튼 활성화
+      document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      // 전체 다운로드 버튼 링크 업데이트
+      const folderId = CATEGORIES[index].folderId;
+      document.getElementById('btn-all').href =
+        `https://drive.google.com/drive/folders/${folderId}`;
+
+      // 캐시 있으면 바로 렌더, 없으면 로딩
+      if (cache[index]) {
+        renderPhotos(cache[index]);
+      } else {
+        loadPhotos(index);
+      }
     }
 
-    async function loadPhotos() {
+    async function loadPhotos(index) {
       const statusEl = document.getElementById('status');
       const gridEl = document.getElementById('photo-grid');
-      const gridLabel = document.getElementById('grid-label');
+
+      statusEl.className = 'status';
+      statusEl.innerHTML = '<span class="dot"></span><span class="dot"></span><span class="dot"></span>&nbsp;사진을 불러오는 중...';
+      gridEl.innerHTML = '';
 
       try {
-        const files = await fetchAllFiles(FOLDER_ID);
+        const files = await fetchFiles(CATEGORIES[index].folderId);
+        cache[index] = files;
+
+        if (index !== currentCategory) return; // 탭 전환된 경우 무시
 
         if (files.length === 0) {
           statusEl.textContent = '사진이 없습니다.';
@@ -249,8 +306,7 @@
         }
 
         statusEl.textContent = '';
-        gridLabel.style.display = 'block';
-        renderPhotos(files, gridEl);
+        renderPhotos(files);
 
       } catch (err) {
         console.error(err);
@@ -259,12 +315,32 @@
       }
     }
 
-    function renderPhotos(files, gridEl) {
+    async function fetchFiles(folderId) {
+      let files = [];
+      let pageToken = null;
+      do {
+        const params = new URLSearchParams({
+          q: `'${folderId}' in parents and mimeType contains 'image/' and trashed = false`,
+          fields: 'nextPageToken, files(id, name)',
+          pageSize: 100,
+          key: API_KEY,
+          ...(pageToken ? { pageToken } : {})
+        });
+        const res = await fetch(`https://www.googleapis.com/drive/v3/files?${params}`);
+        if (!res.ok) throw new Error(`API 오류: ${res.status}`);
+        const data = await res.json();
+        files = files.concat(data.files || []);
+        pageToken = data.nextPageToken;
+      } while (pageToken);
+      return files;
+    }
+
+    function renderPhotos(files) {
+      const gridEl = document.getElementById('photo-grid');
       gridEl.innerHTML = '';
       files.forEach(file => {
         const thumbUrl = `https://drive.google.com/thumbnail?id=${file.id}&sz=w400`;
         const downloadUrl = `https://drive.google.com/uc?export=download&id=${file.id}`;
-
         const card = document.createElement('div');
         card.className = 'photo-card';
         card.innerHTML = `
@@ -288,10 +364,8 @@
       });
     }
 
-    document.getElementById('btn-all').href =
-      `https://drive.google.com/drive/folders/${FOLDER_ID}`;
-
-    loadPhotos();
+    // 초기 로딩
+    selectCategory(0);
   </script>
 
 </body>
